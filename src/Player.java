@@ -1,8 +1,8 @@
 public class Player {
     private final Pet pet;
     private int exp;
-    private final int FEED_EXP = 5;
-    private final int PLAY_EXP = 7;
+    private static final int FEED_EXP = 5;
+    private static final int PLAY_EXP = 7;
 
     public Player(Pet pet) {
         this.pet = pet;
@@ -24,6 +24,6 @@ public class Player {
     }
 
     public void printStatus() {
-        System.out.println("Final Player Exp: "+ exp);
+        System.out.println("Final Player Exp: " + exp);
     }
 }

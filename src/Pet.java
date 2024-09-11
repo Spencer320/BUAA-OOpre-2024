@@ -4,9 +4,9 @@ public class Pet {
     private int happiness;
     private int health;
     private int biscuitCount;
-    private final int BISCUIT_HUNGER_REDUCTION = 10;
-    private final int FRUIT_HUNGER_REDUCTION = 8;
-    private final int MAX_BISCUIT_COUNT = 3;
+    private static final int BISCUIT_HUNGER_REDUCTION = 10;
+    private static final int FRUIT_HUNGER_REDUCTION = 8;
+    private static final int MAX_BISCUIT_COUNT = 3;
 
     public Pet(String name, int hunger, int happiness, int health) {
         this.name = name;
