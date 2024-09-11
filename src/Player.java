@@ -1,6 +1,6 @@
-class Player {
-    private Pet pet;
-    private final int exp;
+public class Player {
+    private final Pet pet;
+    private int exp;
     private final int FEED_EXP = 5;
     private final int PLAY_EXP = 7;
 
@@ -14,7 +14,7 @@ class Player {
         exp += FEED_EXP;
     }
 
-    private void playWithPet() {
+    public void playWithPet() {
         pet.play();
         exp += PLAY_EXP;
     }

@@ -1,5 +1,5 @@
 public class Pet {
-    private String name;
+    private final String name;
     private int hunger;
     private int happiness;
     private int health;
@@ -16,7 +16,7 @@ public class Pet {
         this.biscuitCount = 0;
     }
 
-    private void eat(String foodName) {
+    public void eat(String foodName) {
         if (foodName.equals("biscuit")) {
             biscuitCount++;
             if (biscuitCount > MAX_BISCUIT_COUNT) {
@@ -29,7 +29,7 @@ public class Pet {
         hunger = Math.max(hunger, 0);
     }
 
-    public int play() {
+    public void play() {
         happiness += 5;
         if (happiness > 100) {
             happiness = 100;
