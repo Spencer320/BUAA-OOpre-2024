@@ -2,14 +2,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainClass {
-    static ArrayList<Adventurer> adventurerArrayList = new ArrayList<>();
-    static Scanner scanner = new Scanner(System.in);
+    static final ArrayList<Adventurer> adventurerArrayList = new ArrayList<>();
 
-    public static void main(String[] args){
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
 
         int line = scanner.nextInt();
         int i = 0;
-        while (i<line) {
+        while (i < line) {
             i++;
             String command = scanner.next();
             if ("1".equals(command)) {
@@ -27,58 +28,64 @@ public class MainClass {
             }
         }
     }
-    static public void createAdventurer(){
-        int adv_id = scanner.nextInt();
+
+    static void createAdventurer() {
+        int adventurerId = scanner.nextInt();
         String name = scanner.next();
-        Adventurer adventurer = new Adventurer(adv_id, name);
+        Adventurer adventurer = new Adventurer(adventurerId, name);
         adventurerArrayList.add(adventurer);
     }
-    static public void addBottleForAdventurer(){
-        int adv_id = scanner.nextInt();
-        int bot_id = scanner.nextInt();
+
+    static void addBottleForAdventurer() {
+        int adventurerId = scanner.nextInt();
+        int bottleId = scanner.nextInt();
         String name = scanner.next();
         int capacity = scanner.nextInt();
-        for (Adventurer adventurer : adventurerArrayList){
-            if(adventurer.getAdv_id() == adv_id){
-                adventurer.addBottle(bot_id,name,capacity);
+        for (Adventurer adventurer : adventurerArrayList) {
+            if (adventurer.getId() == adventurerId) {
+                adventurer.addBottle(bottleId, name, capacity);
             }
         }
     }
-    static public void addEquipmentForAdventurer(){
-        int adv_id = scanner.nextInt();
-        int equ_id = scanner.nextInt();
+
+    static void addEquipmentForAdventurer() {
+        int adventurerId = scanner.nextInt();
+        int equipmentId = scanner.nextInt();
         String name = scanner.next();
         int durability = scanner.nextInt();
-        for (Adventurer adventurer : adventurerArrayList){
-            if(adventurer.getAdv_id() == adv_id){
-                adventurer.addEquipment(equ_id,name, durability);
+        for (Adventurer adventurer : adventurerArrayList) {
+            if (adventurer.getId() == adventurerId) {
+                adventurer.addEquipment(equipmentId, name, durability);
             }
         }
     }
-    static public void increaseDurability(){
-        int adv_id = scanner.nextInt();
-        int equ_id = scanner.nextInt();
-        for (Adventurer adventurer : adventurerArrayList){
-            if(adventurer.getAdv_id() == adv_id){
-                adventurer.increaseDurability(equ_id);
+
+    static void increaseDurability() {
+        int adventurerId = scanner.nextInt();
+        int equipmentId = scanner.nextInt();
+        for (Adventurer adventurer : adventurerArrayList) {
+            if (adventurer.getId() == adventurerId) {
+                adventurer.increaseDurability(equipmentId);
             }
         }
     }
-    static public void deleteBottle(){
-        int adv_id = scanner.nextInt();
-        int bot_id = scanner.nextInt();
-        for (Adventurer adventurer : adventurerArrayList){
-            if(adventurer.getAdv_id() == adv_id){
-                adventurer.deleteBottle(bot_id);
+
+    static void deleteBottle() {
+        int adventurerId = scanner.nextInt();
+        int bottleId = scanner.nextInt();
+        for (Adventurer adventurer : adventurerArrayList) {
+            if (adventurer.getId() == adventurerId) {
+                adventurer.deleteBottle(bottleId);
             }
         }
     }
-    static public void deleteEquipment(){
-        int adv_id = scanner.nextInt();
-        int equ_id = scanner.nextInt();
-        for (Adventurer adventurer : adventurerArrayList){
-            if(adventurer.getAdv_id() == adv_id){
-                adventurer.deleteEquipment(equ_id);
+
+    static void deleteEquipment() {
+        int adventurerId = scanner.nextInt();
+        int equipmentId = scanner.nextInt();
+        for (Adventurer adventurer : adventurerArrayList) {
+            if (adventurer.getId() == adventurerId) {
+                adventurer.deleteEquipment(equipmentId);
             }
         }
     }
