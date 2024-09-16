@@ -43,7 +43,7 @@ public class Adventurer {
                 num = i;
             }
         }
-        System.out.print(bottleArrayList.size()-1 + " " + bottleArrayList.get(num).getName() + " " +bottleArrayList.get(num).getCapacity());
+        System.out.println(bottleArrayList.size()-1 + " " + bottleArrayList.get(num).getName() + " " +bottleArrayList.get(num).getCapacity());
         bottleArrayList.remove(num);
     }
 
@@ -54,7 +54,7 @@ public class Adventurer {
                 num = i;
             }
         }
-        System.out.print(equipmentArrayList.size()-1 + " " + equipmentArrayList.get(num).getName() + " " +equipmentArrayList.get(num).getDurability());
+        System.out.println(equipmentArrayList.size()-1 + " " + equipmentArrayList.get(num).getName() + " " +equipmentArrayList.get(num).getDurability());
         equipmentArrayList.remove(num);
     }
 }
