@@ -1,11 +1,5 @@
-public class Equipment {
-    private final int id;
-    private final String name;
+public class Equipment extends Item{
     private int durability;
-
-    public int getEqu_id() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -15,9 +9,8 @@ public class Equipment {
         return durability;
     }
 
-    public Equipment(int id, String name, int durability) {
-        this.id = id;
-        this.name = name;
+    public Equipment(int id, String name, int CE, int durability) {
+        super(id, name, CE);
         this.durability = durability;
     }
 

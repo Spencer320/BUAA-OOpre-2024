@@ -16,15 +16,17 @@ public class MainClass {
             if ("1".equals(command)) {
                 createAdventurer();
             } else if ("2".equals(command)) {
-                addBottleForAdventurer();
+                addBottle();
             } else if ("3".equals(command)) {
-                addEquipmentForAdventurer();
+                addEquipment();
             } else if ("4".equals(command)) {
                 increaseDurability();
             } else if ("5".equals(command)) {
-                deleteBottle();
+                deleteItem();
             } else if ("6".equals(command)) {
-                deleteEquipment();
+                carryItem();
+            } else if ("7".equals(command)) {
+                useBottle();
             }
         }
     }
@@ -36,26 +38,29 @@ public class MainClass {
         adventurerArrayList.add(adventurer);
     }
 
-    static void addBottleForAdventurer() {
+    static void addBottle() {
         int adventurerId = scanner.nextInt();
         int bottleId = scanner.nextInt();
         String name = scanner.next();
         int capacity = scanner.nextInt();
+        String type = scanner.next();
+        int CE = scanner.nextInt();
         for (Adventurer adventurer : adventurerArrayList) {
             if (adventurer.getId() == adventurerId) {
-                adventurer.addBottle(bottleId, name, capacity);
+                adventurer.addBottle(bottleId, name, CE, capacity, type);
             }
         }
     }
 
-    static void addEquipmentForAdventurer() {
+    static void addEquipment() {
         int adventurerId = scanner.nextInt();
         int equipmentId = scanner.nextInt();
         String name = scanner.next();
         int durability = scanner.nextInt();
+        int CE = scanner.nextInt();
         for (Adventurer adventurer : adventurerArrayList) {
             if (adventurer.getId() == adventurerId) {
-                adventurer.addEquipment(equipmentId, name, durability);
+                adventurer.addEquipment(equipmentId, name, durability, CE);
             }
         }
     }
@@ -70,22 +75,35 @@ public class MainClass {
         }
     }
 
-    static void deleteBottle() {
+    static void deleteItem() {
         int adventurerId = scanner.nextInt();
-        int bottleId = scanner.nextInt();
+        int itemId = scanner.nextInt();
         for (Adventurer adventurer : adventurerArrayList) {
             if (adventurer.getId() == adventurerId) {
-                adventurer.deleteBottle(bottleId);
+                adventurer.deleteItem(itemId);
             }
         }
     }
 
-    static void deleteEquipment() {
+    static void carryItem(){
         int adventurerId = scanner.nextInt();
-        int equipmentId = scanner.nextInt();
+        int itemId = scanner.nextInt();
         for (Adventurer adventurer : adventurerArrayList) {
             if (adventurer.getId() == adventurerId) {
-                adventurer.deleteEquipment(equipmentId);
+                adventurer.carryItem(itemId);
+            }
+        }
+    }
+
+    static void useBottle() {
+        int adventurerId = scanner.nextInt();
+        int bottleId = scanner.nextInt();
+        for (Adventurer adventurer : adventurerArrayList) {
+            if (adventurer.getId() == adventurerId) {
+                boolean isUse = adventurer.useBottle(bottleId);
+                if(isUse == false){
+
+                }
             }
         }
     }
