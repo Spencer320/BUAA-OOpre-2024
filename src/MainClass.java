@@ -18,42 +18,30 @@ public class MainClass {
                 int capacity = scanner.nextInt();
                 String type = scanner.next();
                 int ce = scanner.nextInt();
-                if (adventurer != null) {
-                    adventurer.addBottle(bottleId, name, ce, capacity, type);
-                }
+                adventurer.addBottle(bottleId, name, ce, capacity, type);
             } else if ("3".equals(command)) {
                 Adventurer adventurer = getAdventurer();
                 int equipmentId = scanner.nextInt();
                 String name = scanner.next();
                 int durability = scanner.nextInt();
                 int ce = scanner.nextInt();
-                if (adventurer != null) {
-                    adventurer.addEquipment(equipmentId, name, durability, ce);
-                }
+                adventurer.addEquipment(equipmentId, name, durability, ce);
             } else if ("4".equals(command)) {
                 Adventurer adventurer = getAdventurer();
                 int equipmentId = scanner.nextInt();
-                if (adventurer != null) {
-                    adventurer.increaseDurability(equipmentId);
-                }
+                adventurer.increaseDurability(equipmentId);
             } else if ("5".equals(command)) {
                 Adventurer adventurer = getAdventurer();
                 int itemId = scanner.nextInt();
-                if (adventurer != null) {
-                    adventurer.deleteItem(itemId);
-                }
+                adventurer.deleteItem(itemId);
             } else if ("6".equals(command)) {
                 Adventurer adventurer = getAdventurer();
                 int itemId = scanner.nextInt();
-                if (adventurer != null) {
-                    adventurer.carryItem(itemId);
-                }
+                adventurer.carryItem(itemId);
             } else if ("7".equals(command)) {
                 Adventurer adventurer = getAdventurer();
                 int bottleId = scanner.nextInt();
-                if (adventurer != null) {
-                    adventurer.useBottle(bottleId);
-                }
+                adventurer.useBottle(bottleId);
             }
         }
     }

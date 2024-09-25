@@ -4,10 +4,6 @@ public class Item {
     private final int ce;
     private boolean isCarried;
 
-    public int getId() {
-        return id;
-    }
-
     public boolean isCarried() {
         return isCarried;
     }

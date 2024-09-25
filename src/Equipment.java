@@ -1,10 +1,6 @@
 public class Equipment extends Item {
     private int durability;
 
-    public String getName() {
-        return getName();
-    }
-
     public int getDurability() {
         return durability;
     }
