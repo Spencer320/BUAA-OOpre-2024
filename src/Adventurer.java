@@ -1,97 +1,112 @@
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Adventurer {
-    private final Scanner scanner = new Scanner(System.in);
     private final int id;
     private final String name;
-    private HashMap<Integer,Item> items;
+    private HashMap<Integer, Item> items;
 
-    private int Atk;
-    private int Def;
-    private int HP;
-    private int CE;
-
-    public int getId() {
-        return id;
-    }
+    private int atk;
+    private int def;
+    private int hp;
+    private int ce;
 
     public Adventurer(int id, String name) {
         this.id = id;
         this.name = name;
         this.items = new HashMap<>();
-        this.Atk = 1;
-        this.Def = 0;
-        this.HP = 500;
-        this.CE = Atk + Def;
+        this.atk = 1;
+        this.def = 0;
+        this.hp = 500;
+        this.ce = atk + def;
     }
 
-    public void addBottle() {
-        int bottleId = scanner.nextInt();
-        String name = scanner.next();
-        int capacity = scanner.nextInt();
-        String type = scanner.next();
-        int CE = scanner.nextInt();
-        Item bottle = new Bottle(bottleId, name, CE,capacity, type );
-        items.put(bottleId,bottle);
+    public int getId() {
+        return id;
     }
 
-    public void addEquipment() {
-        int equipmentId = scanner.nextInt();
-        String name = scanner.next();
-        int durability = scanner.nextInt();
-        int CE = scanner.nextInt();
-        Item equipment = new Equipment(equipmentId, name, durability, CE);
-        items.put(equipmentId,equipment);
+    public int getAtk() {
+        return atk;
     }
 
-    public void increaseDurability() {
-        int equipmentId = scanner.nextInt();
+    public int getDef() {
+        return def;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public HashMap<Integer, Item> getItems() {
+        return items;
+    }
+
+    public void addBottle(int bottleId, String name, int ce, int capacity, String type) {
+        Item bottle = null;
+        switch (type) {
+            case "HpBottle":
+                bottle = new HpBottle(bottleId, name, ce, capacity, type);
+                break;
+            case "AtkBottle":
+                bottle = new AtkBottle(bottleId, name, ce, capacity, type);
+                break;
+            case "DefBottle":
+                bottle = new DefBottle(bottleId, name, ce, capacity, type);
+                break;
+            default:
+        }
+        items.put(bottleId, bottle);
+    }
+
+    public void addEquipment(int equipmentId, String name, int durability, int ce) {
+        Item equipment = new Equipment(equipmentId, name, durability, ce);
+        items.put(equipmentId, equipment);
+    }
+
+    public void increaseDurability(int equipmentId) {
         Equipment equipment = (Equipment) items.get(equipmentId);
         equipment.increaseDurability();
         System.out.println(equipment.getName() + " " + equipment.getDurability());
     }
 
-    public void deleteItem() {
-        int itemId = scanner.nextInt();
-        if(items.containsKey(itemId)){
+    public void deleteItem(int itemId) {
+        if (items.containsKey(itemId)) {
             Item item = items.get(itemId);
-            if (item instanceof Bottle){
-                int capacity = ((Bottle) item).getCapacity();
-                System.out.println(item.getType()+" "+item.getId()+capacity);
+            if (item instanceof Bottle) {
+                int capacity = ((Bottle) item).capacity;
+                System.out.println(item.getType() + " " + item.getName() + " " + capacity);
             } else if (item instanceof Equipment) {
                 int durability = ((Equipment) item).getDurability();
-                System.out.println(item.getType()+" "+item.getId()+durability);
+                System.out.println(item.getType() + " " + item.getName() + durability);
             }
             items.remove(itemId);
         }
     }
 
-    public void carryItem() {
-        int itemId = scanner.nextInt();
+    public void carryItem(int itemId) {
         Item item = items.get(itemId);
-        item.isCarry = true;
+        item.isCarried = true;
     }
 
-    public void useBottle() {
-        int bottleId = scanner.nextInt();
+    public void useBottle(int bottleId) {
         Bottle bottle = (Bottle) items.get(bottleId);
 
-        if (!bottle.isCarry){
-            System.out.println(this.id + " fail to use " + bottle.getId());
-        } else if (bottle.getCapacity() == 0) {
-            items.remove(bottleId,bottle);
-            System.out.println(this.id + this.HP +this.Atk+this.Def);
+        if (! bottle.isCarried) {
+            System.out.println(this.name + " fail to use " + bottle.getName());
+        } else if (bottle.capacity == 0) {
+            items.remove(bottleId, bottle);
+            System.out.println(this.name + " " + this.hp + " " + this.atk + " " + this.def);
         } else {
-            int value=bottle.useBottle();//value equals to expected increment
-            if (bottle instanceof HPBottle){
-                HP += value;
+            if (bottle instanceof HpBottle) {
+                HpBottle hpBottle = (HpBottle) bottle;
+                hp += hpBottle.useBottle();
             } else if (bottle instanceof AtkBottle) {
-                Atk += value;
-            } else if (bottle instanceof DefBottle){
-                Def += value;
+                AtkBottle atkBottle = (AtkBottle) bottle;
+                atk += atkBottle.useBottle();
+            } else if (bottle instanceof DefBottle) {
+                DefBottle defBottle = (DefBottle) bottle;
+                def += defBottle.useBottle();
             }
-            System.out.println(this.id + this.HP +this.Atk+this.Def);
+            System.out.println(this.name + " " + this.hp + " " + this.atk + " " + this.def);
         }
 
 

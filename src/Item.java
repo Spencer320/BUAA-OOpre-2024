@@ -2,18 +2,19 @@ public class Item {
     protected final int id;
     protected final String name;
     protected final int CE;
-    protected boolean isCarry;
+    protected boolean isCarried;
 
     public Item(int id, String name,int CE) {
         this.id = id;
         this.name = name;
         this.CE = CE;
-        this.isCarry = false;
+        this.isCarried = false;
     }
 
-    public int getId() {
-        return id;
+    public String getName() {
+        return name;
     }
+
 
     public String getType() {
         Item item = this;
