@@ -10,6 +10,7 @@ public class BottleTest {
     @Test
     //test function "useBottle"
     public void useBottle(){
+        assertEquals(100,bottle1.getCapacity());
         assertEquals(false, bottle1.isUsed());
         assertEquals(false, bottle2.isUsed());
         assertEquals(false, bottle3.isUsed());

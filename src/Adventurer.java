@@ -24,6 +24,10 @@ public class Adventurer {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getAtk() {
         return atk;
     }
@@ -76,7 +80,7 @@ public class Adventurer {
                 System.out.println(item.getType() + " " + item.getName() + " " + capacity);
             } else if (item instanceof Equipment) {
                 int durability = ((Equipment) item).getDurability();
-                System.out.println(item.getType() + " " + item.getName() + durability);
+                System.out.println(item.getType() + " " + item.getName() + " " + durability);
             }
             items.remove(itemId);
         }
@@ -92,7 +96,7 @@ public class Adventurer {
 
         if (! bottle.isCarried()) {
             System.out.println(this.name + " fail to use " + bottle.getName());
-        } else if (bottle.getCapacity() == 0) {
+        } else if (bottle.isUsed()) {
             items.remove(bottleId, bottle);
             System.out.println(this.name + " " + this.hp + " " + this.atk + " " + this.def);
         } else {

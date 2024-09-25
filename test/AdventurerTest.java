@@ -1,6 +1,5 @@
 import org.junit.Test;
 
-
 import java.util.HashMap;
 
 import static org.junit.Assert.*;
@@ -8,6 +7,11 @@ import static org.junit.Assert.*;
 public class AdventurerTest {
     Adventurer adventurer = new Adventurer(0,"Tester");
     HashMap<Integer,Item> items = adventurer.getItems();
+    @Test
+    public void adventurerInfo(){
+        assertEquals(0,adventurer.getId());
+        assertEquals("Tester",adventurer.getName());
+    }
 
 
     @Test
@@ -51,7 +55,7 @@ public class AdventurerTest {
     @Test
     //test function "addEquipment" and "increaseDurability"
     public void equipmentTest() {
-        adventurer.addEquipment(0, "name", 100, 15);
+        adventurer.addEquipment(0, "name", 15, 100);
         Equipment equipment = (Equipment) items.get(0);
         assertFalse(equipment.isCarried());
         int dur_now = equipment.getDurability();
@@ -87,6 +91,10 @@ public class AdventurerTest {
         assertEquals(0,adventurer.getDef());
         adventurer.useBottle(3);
         assertEquals(110,adventurer.getDef());
+        adventurer.useBottle(1);
+        adventurer.useBottle(2);
+        assertFalse(items.containsKey(1));
+        assertTrue(items.containsKey(3));
     }
 
 }

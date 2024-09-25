@@ -11,7 +11,7 @@ public class ItemTest {
         assertEquals("DefBottle",bottle2.getType());
         Item bottle3 =new Bottle(0,"name",100,100,"HpBottle") ;
         assertEquals("HpBottle", bottle3.getType());
-        Item equipment =new Equipment(0,"name",100,100);
+        Item equipment =new Equipment(0,"name", 100, 100);
         assertEquals("Equipment",equipment.getType());
     }
 
