@@ -1,13 +1,25 @@
 public class Item {
-    protected final int id;
-    protected final String name;
-    protected final int CE;
-    protected boolean isCarried;
+    private final int id;
+    private final String name;
+    private final int ce;
+    private boolean isCarried;
 
-    public Item(int id, String name,int CE) {
+    public int getId() {
+        return id;
+    }
+
+    public boolean isCarried() {
+        return isCarried;
+    }
+
+    public void setCarried(boolean carried) {
+        isCarried = carried;
+    }
+
+    public Item(int id, String name, int ce) {
         this.id = id;
         this.name = name;
-        this.CE = CE;
+        this.ce = ce;
         this.isCarried = false;
     }
 
@@ -15,10 +27,9 @@ public class Item {
         return name;
     }
 
-
     public String getType() {
         Item item = this;
-        if (item instanceof Bottle){
+        if (item instanceof Bottle) {
             return item.getType();
         } else if (item instanceof Equipment) {
             return "Equipment";

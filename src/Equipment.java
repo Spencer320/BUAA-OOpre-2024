@@ -1,16 +1,16 @@
-public class Equipment extends Item{
+public class Equipment extends Item {
     private int durability;
 
     public String getName() {
-        return name;
+        return getName();
     }
 
     public int getDurability() {
         return durability;
     }
 
-    public Equipment(int id, String name, int CE, int durability) {
-        super(id, name, CE);
+    public Equipment(int id, String name, int ce, int durability) {
+        super(id, name, ce);
         this.durability = durability;
     }
 

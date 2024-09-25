@@ -72,7 +72,7 @@ public class Adventurer {
         if (items.containsKey(itemId)) {
             Item item = items.get(itemId);
             if (item instanceof Bottle) {
-                int capacity = ((Bottle) item).capacity;
+                int capacity = ((Bottle) item).getCapacity();
                 System.out.println(item.getType() + " " + item.getName() + " " + capacity);
             } else if (item instanceof Equipment) {
                 int durability = ((Equipment) item).getDurability();
@@ -84,15 +84,15 @@ public class Adventurer {
 
     public void carryItem(int itemId) {
         Item item = items.get(itemId);
-        item.isCarried = true;
+        item.setCarried(true);
     }
 
     public void useBottle(int bottleId) {
         Bottle bottle = (Bottle) items.get(bottleId);
 
-        if (! bottle.isCarried) {
+        if (! bottle.isCarried()) {
             System.out.println(this.name + " fail to use " + bottle.getName());
-        } else if (bottle.capacity == 0) {
+        } else if (bottle.getCapacity() == 0) {
             items.remove(bottleId, bottle);
             System.out.println(this.name + " " + this.hp + " " + this.atk + " " + this.def);
         } else {

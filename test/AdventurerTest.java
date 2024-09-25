@@ -53,7 +53,7 @@ public class AdventurerTest {
     public void equipmentTest() {
         adventurer.addEquipment(0, "name", 100, 15);
         Equipment equipment = (Equipment) items.get(0);
-        assertFalse(equipment.isCarried);
+        assertFalse(equipment.isCarried());
         int dur_now = equipment.getDurability();
         int dur_last = 14;
         for(int i=0;i<100;i++){
@@ -63,7 +63,7 @@ public class AdventurerTest {
             dur_now= equipment.getDurability();
         }
         adventurer.carryItem(0);
-        assertTrue(equipment.isCarried);
+        assertTrue(equipment.isCarried());
         adventurer.deleteItem(0);
         assertFalse(items.containsKey(0));
     }
