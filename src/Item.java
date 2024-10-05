@@ -25,12 +25,6 @@ public class Item {
 
     public String getType() {
         Item item = this;
-        if (item instanceof Bottle) {
-            return item.getType();
-        } else if (item instanceof Equipment) {
-            return "Equipment";
-        } else {
-            return "Error";
-        }
+        return String.valueOf(item.getClass());
     }
 }

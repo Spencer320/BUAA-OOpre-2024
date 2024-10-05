@@ -8,7 +8,6 @@ public class MainClass {
 
     public static void main(String[] args) {
         Manager manager = new Manager();
-
         ArrayList<ArrayList<String>> inputInfo = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         int n = Integer.parseInt(scanner.nextLine().trim());

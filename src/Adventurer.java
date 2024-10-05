@@ -48,13 +48,13 @@ public class Adventurer {
         Item bottle = null;
         switch (type) {
             case "HpBottle":
-                bottle = new HpBottle(bottleId, name, ce, capacity, type);
+                bottle = new HpBottle(bottleId, name, ce, capacity);
                 break;
             case "AtkBottle":
-                bottle = new AtkBottle(bottleId, name, ce, capacity, type);
+                bottle = new AtkBottle(bottleId, name, ce, capacity);
                 break;
             case "DefBottle":
-                bottle = new DefBottle(bottleId, name, ce, capacity, type);
+                bottle = new DefBottle(bottleId, name, ce, capacity);
                 break;
             default:
         }

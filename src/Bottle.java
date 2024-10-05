@@ -1,6 +1,5 @@
 public class Bottle extends Item {
     private int capacity;
-    private final String type;
     private boolean isUsed;
 
     public int getCapacity() {
@@ -11,10 +10,9 @@ public class Bottle extends Item {
         return isUsed;
     }
 
-    public Bottle(String id, String name, int ce, int capacity, String type) {
+    public Bottle(String id, String name, int ce, int capacity) {
         super(id, name, ce);
         this.capacity = capacity;
-        this.type = type;
         this.isUsed = false;
     }
 
@@ -23,10 +21,10 @@ public class Bottle extends Item {
         return 0;
     }
 
-    @Override
-    public String getType() {
+    /*@Override
+    public Class<? extends Item> getType() {
         return type;
-    }
+    }*/
 
 }
 

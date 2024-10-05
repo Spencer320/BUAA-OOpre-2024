@@ -24,7 +24,7 @@ public class AdventurerTest {
         Item item = items.get("1");
         assertTrue(item instanceof Bottle);
         Bottle bottle = (Bottle) items.get("1");
-        assertEquals("HpBottle",bottle.getType());
+        assertEquals("class HpBottle",bottle.getType());
         assertTrue(bottle instanceof HpBottle);
     }
 

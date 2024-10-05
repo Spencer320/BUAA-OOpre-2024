@@ -3,9 +3,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BottleTest {
-    Bottle bottle1 = new HpBottle("1","botName",0,100,"HpBottle");
-    Bottle bottle2 = new AtkBottle("2","botName",100,1005,"AtkBottle");
-    Bottle bottle3 = new DefBottle("3","botName",100,1005,"DefBottle");
+    Bottle bottle1 = new HpBottle("1","botName",0,100);
+    Bottle bottle2 = new AtkBottle("2","botName",100,1005);
+    Bottle bottle3 = new DefBottle("3","botName",100,1005);
 
     @Test
     //test function "useBottle"
