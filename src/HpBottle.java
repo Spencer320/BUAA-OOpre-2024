@@ -1,7 +1,7 @@
 public class HpBottle extends Bottle {
     private int hp;
 
-    public HpBottle(int id, String name, int ce, int capacity, String type) {
+    public HpBottle(String id, String name, int ce, int capacity, String type) {
         super(id, name, ce, capacity, type);
         this.hp = capacity;
     }

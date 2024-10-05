@@ -11,7 +11,7 @@ public class Bottle extends Item {
         return isUsed;
     }
 
-    public Bottle(int id, String name, int ce, int capacity, String type) {
+    public Bottle(String id, String name, int ce, int capacity, String type) {
         super(id, name, ce);
         this.capacity = capacity;
         this.type = type;

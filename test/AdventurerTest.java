@@ -5,11 +5,11 @@ import java.util.HashMap;
 import static org.junit.Assert.*;
 
 public class AdventurerTest {
-    Adventurer adventurer = new Adventurer(0,"Tester");
+    Adventurer adventurer = new Adventurer("0","Tester");
     HashMap<Integer,Item> items = adventurer.getItems();
     @Test
     public void adventurerInfo(){
-        assertEquals(0,adventurer.getId());
+        assertEquals("0",adventurer.getId());
         assertEquals("Tester",adventurer.getName());
     }
 

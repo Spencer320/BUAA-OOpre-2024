@@ -1,26 +1,26 @@
 import java.util.HashMap;
 
 public class Adventurer {
-    private final int id;
+    private final String id;
     private final String name;
-    private HashMap<Integer, Item> items;
+    private HashMap<String, Item> items;
 
     private int atk;
     private int def;
     private int hp;
     private int ce;
 
-    public Adventurer(int id, String name) {
+    public Adventurer(String id, String name) {
         this.id = id;
         this.name = name;
-        this.items = new HashMap<>();
+        this.items = new HashMap<String, Item>();
         this.atk = 1;
         this.def = 0;
         this.hp = 500;
         this.ce = atk + def;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -40,11 +40,11 @@ public class Adventurer {
         return hp;
     }
 
-    public HashMap<Integer, Item> getItems() {
+    public HashMap<String, Item> getItems() {
         return items;
     }
 
-    public void addBottle(int bottleId, String name, int ce, int capacity, String type) {
+    public void addBottle(String bottleId, String name, int ce, int capacity, String type) {
         Item bottle = null;
         switch (type) {
             case "HpBottle":
@@ -61,18 +61,18 @@ public class Adventurer {
         items.put(bottleId, bottle);
     }
 
-    public void addEquipment(int equipmentId, String name, int durability, int ce) {
+    public void addEquipment(String equipmentId, String name, int durability, int ce) {
         Item equipment = new Equipment(equipmentId, name, durability, ce);
         items.put(equipmentId, equipment);
     }
 
-    public void increaseDurability(int equipmentId) {
+    public void increaseDurability(String equipmentId) {
         Equipment equipment = (Equipment) items.get(equipmentId);
         equipment.increaseDurability();
         System.out.println(equipment.getName() + " " + equipment.getDurability());
     }
 
-    public void deleteItem(int itemId) {
+    public void deleteItem(String itemId) {
         if (items.containsKey(itemId)) {
             Item item = items.get(itemId);
             if (item instanceof Bottle) {
@@ -86,12 +86,12 @@ public class Adventurer {
         }
     }
 
-    public void carryItem(int itemId) {
+    public void carryItem(String itemId) {
         Item item = items.get(itemId);
         item.setCarried(true);
     }
 
-    public void useBottle(int bottleId) {
+    public void useBottle(String bottleId) {
         Bottle bottle = (Bottle) items.get(bottleId);
 
         if (! bottle.isCarried()) {

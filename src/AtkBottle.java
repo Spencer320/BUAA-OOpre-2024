@@ -1,7 +1,7 @@
 public class AtkBottle extends Bottle {
     private int atk;
 
-    public AtkBottle(int id, String name, int ce, int capacity, String type) {
+    public AtkBottle(String id, String name, int ce, int capacity, String type) {
         super(id, name, ce, capacity, type);
         this.atk = capacity / 100 + ce;
     }

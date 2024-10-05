@@ -1,5 +1,5 @@
 public class Item {
-    private final int id;
+    private final String id;
     private final String name;
     private final int ce;
     private boolean isCarried;
@@ -12,7 +12,7 @@ public class Item {
         isCarried = carried;
     }
 
-    public Item(int id, String name, int ce) {
+    public Item(String id, String name, int ce) {
         this.id = id;
         this.name = name;
         this.ce = ce;
