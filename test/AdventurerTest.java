@@ -1,8 +1,6 @@
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +9,7 @@ public class AdventurerTest {
     HashMap<String, Item> items = adventurer.getItems();
     HashMap<String,Equipment> carriedEquipments = adventurer.getCarriedEquipments();
     HashMap<String, HashMap<String, Bottle>> carriedBottles = adventurer.getCarriedBottles();
+
 
     @Test
     public void adventurerInfo(){
@@ -83,21 +82,27 @@ public class AdventurerTest {
         adventurer.addBottle(String.valueOf(1),"botName",0,100,"HpBottle");
         adventurer.addBottle(String.valueOf(2),"botName",100,1005,"AtkBottle");
         adventurer.addBottle(String.valueOf(3),"botName",100,1005,"DefBottle");
+
+        System.out.println(adventurer.getCe());
         adventurer.useBottle(String.valueOf(1));
         assertFalse(((Bottle) items.get("1")).isUsed());
+
         adventurer.carryItem(String.valueOf(1));
         adventurer.carryItem(String.valueOf(2));
-        adventurer.carryItem(String.valueOf(3));
         adventurer.useBottle(String.valueOf(1));
         adventurer.useBottle(String.valueOf(2));
-        assertTrue(((Bottle) items.get("1")).isUsed());
         assertEquals(600,adventurer.getHp());
+        assertTrue(((Bottle) items.get("1")).isUsed());
+        assertNotEquals(111,adventurer.getAtk());
+
+        adventurer.useBottle(String.valueOf(1));
+        adventurer.carryItem(String.valueOf(2));
+        adventurer.useBottle(String.valueOf(2));
         assertEquals(111,adventurer.getAtk());
+        adventurer.carryItem(String.valueOf(3));
         assertEquals(0,adventurer.getDef());
         adventurer.useBottle(String.valueOf(3));
         assertEquals(110,adventurer.getDef());
-        adventurer.useBottle(String.valueOf(1));
-        adventurer.useBottle(String.valueOf(2));
         assertFalse(items.containsKey("1"));
         assertTrue(items.containsKey("3"));
     }
@@ -125,4 +130,24 @@ public class AdventurerTest {
         assertTrue(sodas.containsKey("496"));
     }
 
+    @Test
+    public void fragmentTest(){
+        Fragment fragment = new Fragment("1","frag");
+        adventurer.addFragment("1","fragment");
+        adventurer.addFragment("2","fragment");
+        adventurer.addFragment("3","fragment");
+        adventurer.addFragment("4","fragment");
+        adventurer.addFragment("5","fragment");
+        adventurer.addFragment("6","fragment");
+        adventurer.addFragment("7","fragment");
+        adventurer.addFragment("8","fragment");
+        adventurer.useFragment("123456","fragment");
+        adventurer.useFragment("23456","fragment");
+        adventurer.addFragment("9","fragment");
+        adventurer.addFragment("10","fragment");
+        adventurer.addFragment("11","fragment");
+        adventurer.addEquipment("3456","md",1,100,"Sword");
+        adventurer.useFragment("3456","fragment");
+
+    }
 }

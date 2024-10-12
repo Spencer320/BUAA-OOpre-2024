@@ -10,9 +10,4 @@ public class DefBottle extends Bottle {
     public int getCe() {
         return def;
     }
-/*@Override
-    public int useBottle() {
-        super.useBottle();
-        return def;
-    }*/
 }

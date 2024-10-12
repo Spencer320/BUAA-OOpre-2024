@@ -10,10 +10,4 @@ public class AtkBottle extends Bottle {
     public int getCe() {
         return atk;
     }
-
-    /*@Override
-    public int useBottle() {
-        super.useBottle();
-        return atk;
-    }*/
 }

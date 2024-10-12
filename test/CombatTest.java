@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
-public class ManagerTest {
+public class CombatTest {
+
 
 }

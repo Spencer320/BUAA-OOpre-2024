@@ -171,8 +171,8 @@ public class Adventurer {
 
     public void useBottle(String bottleId) {
         Bottle bottle = (Bottle) items.get(bottleId);
-
-        if (carriedBottles.get(bottle.getName()) == null) {
+        HashMap<String,Bottle> bottles = carriedBottles.get(bottle.getName());
+        if (bottles == null || !bottles.containsKey(bottleId)) {
             System.out.println(this.name + " fail to use " + bottle.getName());
         } else if (bottle.isUsed()) {
             deleteBottle(bottle,bottleId,bottle.getName());

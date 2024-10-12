@@ -7,8 +7,4 @@ public class Fragment {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
 }
