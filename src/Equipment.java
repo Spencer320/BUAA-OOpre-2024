@@ -5,7 +5,7 @@ public class Equipment extends Item {
         return durability;
     }
 
-    public Equipment(String id, String name, int durability, int ce) {
+    public Equipment(String id, String name, int ce, int durability) {
         super(id, name, ce);
         this.durability = durability;
     }
@@ -14,4 +14,9 @@ public class Equipment extends Item {
         this.durability = this.durability + 1;
     }
 
+    public void decreaseDurability() { this.durability = this.durability - 1; }
+
+    public int newHp(int atk,int def,int hp) {
+        return hp + def - atk - this.getCe();
+    }
 }

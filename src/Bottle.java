@@ -18,14 +18,12 @@ public class Bottle extends Item {
 
     public int useBottle() {
         isUsed = true;
-        return 0;
+        return getCe();
     }
 
-    /*@Override
-    public Class<? extends Item> getType() {
-        return type;
-    }*/
-
+    public void resetUsed() {
+        isUsed = false;
+    }
 }
 
 

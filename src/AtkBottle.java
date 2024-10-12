@@ -7,8 +7,13 @@ public class AtkBottle extends Bottle {
     }
 
     @Override
+    public int getCe() {
+        return atk;
+    }
+
+    /*@Override
     public int useBottle() {
         super.useBottle();
         return atk;
-    }
+    }*/
 }

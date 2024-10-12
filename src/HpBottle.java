@@ -7,8 +7,12 @@ public class HpBottle extends Bottle {
     }
 
     @Override
+    public int getCe() {
+        return hp;
+    }
+/*@Override
     public int useBottle() {
         super.useBottle();
         return hp;
-    }
+    }*/
 }

@@ -1,12 +1,17 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class AdventurerTest {
     Adventurer adventurer = new Adventurer("0","Tester");
     HashMap<String, Item> items = adventurer.getItems();
+    HashMap<String,Equipment> carriedEquipments = adventurer.getCarriedEquipments();
+    HashMap<String, HashMap<String, Bottle>> carriedBottles = adventurer.getCarriedBottles();
+
     @Test
     public void adventurerInfo(){
         assertEquals("0",adventurer.getId());
@@ -55,9 +60,9 @@ public class AdventurerTest {
     @Test
     //test function "addEquipment" and "increaseDurability"
     public void equipmentTest() {
-        adventurer.addEquipment(String.valueOf(0), "name", 15, 100);
+        adventurer.addEquipment(String.valueOf(0), "name", 15, 100, "Sword");
         Equipment equipment = (Equipment) items.get("0");
-        assertFalse(equipment.isCarried());
+        assertFalse(carriedEquipments.containsKey("name"));
         int dur_now = equipment.getDurability();
         int dur_last = 14;
         for(int i=0;i<100;i++){
@@ -67,7 +72,7 @@ public class AdventurerTest {
             dur_now= equipment.getDurability();
         }
         adventurer.carryItem(String.valueOf(0));
-        assertTrue(equipment.isCarried());
+        assertTrue(carriedEquipments.containsKey("name"));
         adventurer.deleteItem(String.valueOf(0));
         assertFalse(items.containsKey("0"));
     }
@@ -95,6 +100,29 @@ public class AdventurerTest {
         adventurer.useBottle(String.valueOf(2));
         assertFalse(items.containsKey("1"));
         assertTrue(items.containsKey("3"));
+    }
+
+    @Test
+    public void packTest (){
+        Bottle bottle1 = new Bottle("500","Water Bottle", 500,500);
+        Bottle bottle2 = new Bottle("499","Soda Bottle", 350,500);
+        Bottle bottle3 = new Bottle("498","Water Bottle", 500,500);
+        Bottle bottle4 = new Bottle("497","Water Bottle", 500,500);
+        Bottle bottle5 = new Bottle("496","Soda Bottle", 350,500);
+        adventurer.addBottle(String.valueOf(2),"botName",8,10,"AtkBottle");
+        adventurer.carryItem(String.valueOf(2));
+        adventurer.useBottle(String.valueOf(2));
+        assertEquals(2,adventurer.getCe()/5+1);
+        adventurer.carryBottle(bottle1);
+        adventurer.carryBottle(bottle2);
+        adventurer.carryBottle(bottle3);
+        adventurer.carryBottle(bottle4);
+        adventurer.carryBottle(bottle5);
+
+        HashMap<String,Bottle> waters = carriedBottles.getOrDefault("Water Bottle",new HashMap<>());
+        HashMap<String,Bottle> sodas = carriedBottles.getOrDefault("Soda Bottle",new HashMap<>());
+        assertFalse(waters.containsKey("497"));
+        assertTrue(sodas.containsKey("496"));
     }
 
 }
