@@ -71,6 +71,7 @@ public class AdventurerTest {
             dur_now= equipment.getDurability();
         }
         adventurer.carryItem(String.valueOf(0));
+        assertFalse(carriedEquipments.isEmpty());
         assertTrue(carriedEquipments.containsKey("name"));
         adventurer.deleteItem(String.valueOf(0));
         assertFalse(items.containsKey("0"));
@@ -83,7 +84,6 @@ public class AdventurerTest {
         adventurer.addBottle(String.valueOf(2),"botName",100,1005,"AtkBottle");
         adventurer.addBottle(String.valueOf(3),"botName",100,1005,"DefBottle");
 
-        System.out.println(adventurer.getCe());
         adventurer.useBottle(String.valueOf(1));
         assertFalse(((Bottle) items.get("1")).isUsed());
 

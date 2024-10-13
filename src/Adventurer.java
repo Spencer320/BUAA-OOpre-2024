@@ -101,7 +101,7 @@ public class Adventurer {
                 equipment = new Sword(equipmentId,name,ce,durability);
                 break;
             case "Blade":
-                equipment = new Bottle(equipmentId,name,ce,durability);
+                equipment = new Blade(equipmentId,name,ce,durability);
                 break;
             default:
         }
@@ -138,14 +138,14 @@ public class Adventurer {
                 bottles.remove(id,bottle);
             }
         }
-        items.remove(bottle.getId());
+        items.remove(id);
     }
 
     public void deleteEquipment(Equipment equipment,String id,String name) {
         if (carriedEquipments.containsKey(name)) {
-            carriedEquipments.remove(id,equipment);
+            carriedEquipments.remove(name,equipment);
         }
-        items.remove(equipment.getId());
+        items.remove(id);
     }
 
     public void carryItem(String itemId) {
@@ -155,7 +155,7 @@ public class Adventurer {
             carryBottle(bottle);
         } else if (item instanceof Equipment) {
             Equipment equipment = (Equipment) item;
-            carriedEquipments.put(item.getName(),equipment);
+            carriedEquipments.put(equipment.getName(),equipment);
         }
     }
 

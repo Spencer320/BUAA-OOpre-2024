@@ -23,6 +23,6 @@ public class Item {
 
     public String getType() {
         Item item = this;
-        return String.valueOf(item.getClass());
+        return item.getClass().getSimpleName();
     }
 }

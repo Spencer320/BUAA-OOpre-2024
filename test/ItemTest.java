@@ -20,10 +20,10 @@ public class ItemTest {
         Item item2 = items.get("2");
         Item item3 = items.get("3");
         Item item4 = items.get("4");
-        assertEquals("class AtkBottle",item1.getType());
-        assertEquals("class DefBottle",item2.getType());
-        assertEquals("class HpBottle", item3.getType());
-        assertEquals("class Sword",item4.getType());
+        assertEquals("AtkBottle",item1.getType());
+        assertEquals("DefBottle",item2.getType());
+        assertEquals("HpBottle", item3.getType());
+        assertEquals("Sword",item4.getType());
     }
 
 }
