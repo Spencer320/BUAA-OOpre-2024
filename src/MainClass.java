@@ -7,7 +7,11 @@ public class MainClass {
     static final HashMap<String,Adventurer> adventurers = new HashMap<>();
 
     public static void main(String[] args) {
-        CommandManager manager = new CommandManager();
+        ArrayList<ArrayList<String>> inputInfo = getInputInfo();
+        typeCommand(inputInfo);
+    }
+
+    public static ArrayList<ArrayList<String>> getInputInfo() {
         ArrayList<ArrayList<String>> inputInfo = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         int n = Integer.parseInt(scanner.nextLine().trim());
@@ -16,7 +20,11 @@ public class MainClass {
             String[] strings = nextLine.trim().split(" +");
             inputInfo.add(new ArrayList<>(Arrays.asList(strings)));
         }
+        return inputInfo;
+    }
 
+    public static void typeCommand(ArrayList<ArrayList<String>> inputInfo) {
+        CommandManager manager = new CommandManager();
         for (ArrayList<String> cmd : inputInfo) {
             ArrayList<String> message = new ArrayList<>();
             String type = cmd.get(0);
@@ -24,9 +32,8 @@ public class MainClass {
                 message.add(cmd.get(j));
             }
             CommandUtil commandUtil = manager.selectCommand(type);
-            commandUtil.command(message);
+            commandUtil.message(message);
         }
-
     }
 }
 

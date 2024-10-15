@@ -59,12 +59,21 @@ public class CombatTest {
 
         Equipment equipment1 = adventurer.getCarriedEquipments().get("soyo");
         Equipment equipment2 = adventurer.getCarriedEquipments().get("saki");
+        Equipment equipment3 = adventurer.getCarriedEquipments().get("taki");
 
         Combat combat1 = new Combat(adventurer,rivals,equipment1);
         Combat combat2 = new Combat(adventurer,rivals,equipment2);
+        Combat combat3 = new Combat(adventurer,rivals,equipment3);
 
         assertTrue(combat1.isCombat());
         assertFalse(combat2.isCombat());
+        assertTrue(combat3.isCombat());
+        combat3.success();
+
+        Equipment equipment4 = adventurer.getCarriedEquipments().get("taki");
+        Combat combat4 = new Combat(adventurer,rivals, equipment4);
+        assertFalse(combat4.isCombat());
+
     }
 
     @Test

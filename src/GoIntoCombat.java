@@ -3,7 +3,7 @@ import java.util.List;
 
 public class GoIntoCombat implements CommandUtil {
     @Override
-    public void command(ArrayList message) {
+    public void message(ArrayList message) {
         String id = message.get(0).toString();
         String name = message.get(1).toString();
         int k = Integer.parseInt(message.get(2).toString());

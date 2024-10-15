@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class IncreaseDurability implements CommandUtil {
     @Override
-    public void command(ArrayList message) {
+    public void message(ArrayList message) {
         String id = message.get(0).toString();
         String equipmentId = message.get(1).toString();
         Adventurer adventurer = MainClass.adventurers.get(id);
