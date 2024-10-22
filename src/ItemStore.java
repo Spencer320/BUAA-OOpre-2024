@@ -22,7 +22,7 @@ public class ItemStore {
         return bottle;
     }
 
-    public Item createEquipment(String equipmentId, String name, int durability, int ce,String type) {
+    public Item createEquipment(String equipmentId,String name,int durability,int ce,String type) {
         Item equipment = null;
         switch (type) {
             case "Axe":

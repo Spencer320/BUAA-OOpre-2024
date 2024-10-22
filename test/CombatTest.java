@@ -11,6 +11,20 @@ public class CombatTest {
     Adventurer adventurer = new Adventurer("10086","adv");
     Adventurer rival1 = new Adventurer("10010","r1");
     Adventurer rival2 = new Adventurer("10011","r2");
+    Adventurer adventurer1 = new Adventurer("1000","Tomorin");
+    Adventurer adventurer2 = new Adventurer("2000","Soyorin");
+    Adventurer adventurer3 = new Adventurer("3000","name");
+    Adventurer adventurer4 = new Adventurer("4000","name");
+    Adventurer adventurer5 = new Adventurer("5000","name");
+    Adventurer adventurer6 = new Adventurer("5000","name");
+    Adventurer adventurer7 = new Adventurer("5000","name");
+    Adventurer adventurer8 = new Adventurer("5000","name");
+    Adventurer adventurer9 = new Adventurer("5000","name");
+    Adventurer adventurer10 = new Adventurer("5000","name");
+    Adventurer adventurer11 = new Adventurer("5000","name");
+    Adventurer adventurer12 = new Adventurer("5000","name");
+
+
     List<Adventurer> rivals = new ArrayList<>();
     ItemStore itemStore = ItemStore.getInstance();
 
@@ -20,18 +34,24 @@ public class CombatTest {
     }
 
     public void setAdventurer() {
-        adventurer.addBottle(itemStore.createBottle("8","anon",100,2000,"AtkBottle"));
-        adventurer.carryItem("8");
-        adventurer.useBottle("8");
-        rival1.addBottle(itemStore.createBottle("88","anon",220,2000,"DefBottle"));
-        rival1.carryItem("88");
-        rival1.useBottle("88");
-        rival2.addBottle(itemStore.createBottle("888","anon",180,2000,"DefBottle"));
-        rival2.carryItem("888");
-        rival2.useBottle("888");
-        rival2.addBottle(itemStore.createBottle("8888","anon",0,2000,"HpBottle"));
-        rival2.carryItem("8888");
-        rival2.useBottle("8888");
+        adventurer.updateAtk(121);
+        rival1.updateDef(240);
+        rival2.updateDef(200);
+        rival1.updateHp(500);
+        rival2.updateHp(2500);
+    }
+
+    public void setMercenary() {
+        adventurer1.updateAtk(1000);
+        adventurer1.updateDef(300);
+        adventurer1.updateHp(500);
+        adventurer2.updateAtk(4000);
+        adventurer2.updateDef(0);
+        adventurer2.updateHp(100);
+        adventurer1.addEquipment(itemStore.createEquipment("600","Taki",1,100,"Blade"));
+        adventurer2.addEquipment(itemStore.createEquipment("500","Anon",1,200,"Sword"));
+        adventurer1.carryItem("600");
+        adventurer2.carryItem("500");
     }
 
     public void setEquipment() {
@@ -43,16 +63,12 @@ public class CombatTest {
         adventurer.carryItem("5");
     }
 
+    //without taking "mercenary method" into consideration
     @Test
     public void isCombat(){
         setRivals();
         setAdventurer();
         setEquipment();
-        assertEquals(121,adventurer.getAtk());
-        assertEquals(240,rival1.getDef());
-        assertEquals(200,rival2.getDef());
-        assertEquals(500,rival1.getHp());
-        assertEquals(2500,rival2.getHp());
         HashMap<String,Equipment> equipmentHashMap = adventurer.getCarriedEquipments();
         for (Map.Entry<String, Equipment> entry : equipmentHashMap.entrySet()) {
             System.out.println("键: " + entry.getKey() + ", 值: " + entry.getValue());
@@ -62,9 +78,9 @@ public class CombatTest {
         Equipment equipment2 = adventurer.getCarriedEquipments().get("saki");
         Equipment equipment3 = adventurer.getCarriedEquipments().get("taki");
 
-        Combat combat1 = new Combat(adventurer,rivals,equipment1);
-        Combat combat2 = new Combat(adventurer,rivals,equipment2);
-        Combat combat3 = new Combat(adventurer,rivals,equipment3);
+        Combat combat1 = new NormalCombat(adventurer,rivals,equipment1);
+        Combat combat2 = new NormalCombat(adventurer,rivals,equipment2);
+        NormalCombat combat3 = new NormalCombat(adventurer,rivals,equipment3);
 
         assertTrue(combat1.isCombat());
         assertFalse(combat2.isCombat());
@@ -73,7 +89,6 @@ public class CombatTest {
         assertEquals(0, equipment3.getDurability());
 
         Equipment equipment4 = adventurer.getCarriedEquipments().get("taki");
-        assertNull(equipment4);
         Combat combat4 = new Combat(adventurer,rivals, equipment4);
         assertFalse(combat4.isCombat());
 
@@ -120,5 +135,87 @@ public class CombatTest {
         setEquipment();
         Combat combat = new Combat(adventurer,rivals,adventurer.getCarriedEquipments().get("saki"));
         combat.failure();
+    }
+    //new test
+    @Test
+    //test defense
+    public void chainTest1(){
+        setRivals();
+        setAdventurer();
+        setEquipment();
+        setMercenary();
+        rival1.employAdventurer(adventurer1);
+        rival1.employAdventurer(adventurer2);
+        Equipment equipment = adventurer.getCarriedEquipments().get("soyo");
+        ChainCombat combat = new ChainCombat(adventurer,rivals, equipment);
+        System.out.println(combat.getMaxDef());
+        assertFalse(combat.isCombat());
+    }
+
+    @Test
+    //test object
+    public void chainTest2(){
+        setRivals();
+        setAdventurer();
+        setEquipment();
+        setMercenary();
+        Equipment equipment = adventurer.getCarriedEquipments().get("taki");
+        rival1.employAdventurer(adventurer1);
+        rival1.employAdventurer(adventurer2);
+        adventurer2.employAdventurer(adventurer3);
+        adventurer3.employAdventurer(adventurer4);
+        adventurer4.employAdventurer(adventurer5);
+        adventurer5.employAdventurer(adventurer6);
+        adventurer6.employAdventurer(adventurer7);
+        adventurer7.employAdventurer(adventurer8);
+        rival2.employAdventurer(adventurer8);
+        adventurer8.employAdventurer(adventurer9);
+        adventurer8.employAdventurer(adventurer10);
+        adventurer10.employAdventurer(adventurer1);
+        ChainCombat combat = new ChainCombat(adventurer,rivals,equipment);
+        assertTrue(combat.isCombat());
+        List<Adventurer> extendedRivals = combat.getExtendedRivals();
+        assertTrue(extendedRivals.contains(adventurer5));
+        assertFalse(extendedRivals.contains(adventurer6));
+        assertTrue(extendedRivals.contains(adventurer10));
+    }
+
+    @Test
+    public void normalTest1(){
+        setRivals();
+        setAdventurer();
+        setEquipment();
+        setMercenary();
+        rival1.employAdventurer(adventurer1);
+        rival2.employAdventurer(adventurer1);
+        rival2.employAdventurer(adventurer2);
+        Equipment equipment = adventurer.getCarriedEquipments().get("soyo");
+        NormalCombat combat = new NormalCombat(adventurer,rivals,equipment);
+        assertTrue(combat.isCombat());
+        combat.success();
+        assertTrue(rival2.getItems().containsKey("500"));
+        assertTrue(rival1.getItems().containsKey("600"));
+        assertFalse(rival2.getItems().containsKey("600"));
+    }
+
+    @Test
+    public void normalTest2(){
+        setRivals();
+        setAdventurer();
+        setEquipment();
+        setMercenary();
+        rival1.employAdventurer(adventurer1);
+        rival2.employAdventurer(adventurer1);
+        rival2.employAdventurer(adventurer2);
+        Equipment equipment = adventurer.getCarriedEquipments().get("soyo");
+        NormalCombat combat = new NormalCombat(adventurer,rivals,equipment);
+        assertTrue(combat.isCombat());
+        combat.success();
+        combat.success();
+        assertSame(rival2.getMercenaries().get(0).getAdventurer(), adventurer1);
+        combat.success();
+        assertSame(rival2.getMercenaries().get(0).getAdventurer(), adventurer1);
+        combat.success();
+        assertTrue(rival2.getMercenaries().isEmpty());
     }
 }

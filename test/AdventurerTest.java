@@ -21,7 +21,6 @@ public class AdventurerTest {
         assertEquals("Tester",adventurer.getName());
     }
 
-
     @Test
     //test function "addBottle"
     public void bottleTest1(){
@@ -154,5 +153,15 @@ public class AdventurerTest {
         adventurer.addEquipment( itemStore.createEquipment("3456","md",1,100,"Sword"));
         adventurer.useFragment("3456","fragment");
 
+    }
+
+    @Test
+    public void mercenaryTest(){
+        Adventurer adventurer1 = new Adventurer("100","Tomorin");
+        Adventurer adventurer2 = new Adventurer("200","Soyorin");
+        adventurer.employAdventurer(adventurer1);
+        adventurer.employAdventurer(adventurer2);
+        assertEquals(adventurer.getMercenaries().get(0).getAdventurer(), adventurer1);
+        assertEquals(3,adventurer.getComprehensiveCE());
     }
 }

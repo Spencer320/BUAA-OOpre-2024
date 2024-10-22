@@ -8,10 +8,6 @@ public class BattleField {
         return battleField;
     }
 
-    public Combat getCombat() {
-        return combat;
-    }
-
     public void createCombat(Adventurer adventurer, List<Adventurer> rivals,
                              Equipment equipment, String type) {
         switch (type) {

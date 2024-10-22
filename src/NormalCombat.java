@@ -11,6 +11,7 @@ public class NormalCombat extends Combat {
         super.success();
         for (Adventurer rival : getRivals()) {
             ArrayList<Mercenary> mercenaries = rival.getMercenaries();
+            ArrayList<Mercenary> removedMercenaries = new ArrayList<>();
             for (Mercenary mercenary : mercenaries) {
                 mercenary.setAssistanceTimes();
                 Adventurer mercenaryAdventurer = mercenary.getAdventurer();
@@ -19,15 +20,15 @@ public class NormalCombat extends Combat {
                 }
                 int maxAssistanceTimes = 3;
                 if (mercenary.getAssistanceTimes() > maxAssistanceTimes) {
-                    rival.getMercenaries().remove(mercenary);
+                    removedMercenaries.add(mercenary);
                 }
             }
+            mercenaries.removeAll(removedMercenaries);
         }
     }
 
     public void assistance(Adventurer giver,Adventurer receiver,Equipment equipment) {
         giver.deleteEquipment(equipment);
         receiver.addEquipment(equipment);
-        receiver.getItems().put(equipment.getId(), equipment);
     }
 }

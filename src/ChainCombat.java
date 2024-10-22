@@ -7,9 +7,14 @@ public class ChainCombat extends Combat {
 
     public ChainCombat(Adventurer adventurer, List<Adventurer> rivals, Equipment equipment) {
         super(adventurer, rivals, equipment);
+        extendedRivals = rivals;
         for (int i = 0; i < scanDepth - 1; i++) {
-            extendedRivals = scanEmploy(rivals);
+            extendedRivals = scanEmploy(extendedRivals);
         }
+    }
+
+    public List<Adventurer> getExtendedRivals() {
+        return extendedRivals;
     }
 
     private List<Adventurer> scanEmploy(List<Adventurer> srcList) {
