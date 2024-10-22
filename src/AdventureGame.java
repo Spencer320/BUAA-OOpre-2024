@@ -67,7 +67,7 @@ public class AdventureGame {
     static class Wnd implements Guard {
         @Override
         public boolean fight(Adventurer adventurer) {
-            return adventurer.getComprehensiveCE() > 1000;
+            return adventurer.getComprehensiveCE() > 4000;
         }
 
         @Override

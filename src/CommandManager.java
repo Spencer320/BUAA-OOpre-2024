@@ -15,6 +15,8 @@ public class CommandManager {
         commands.add(new AddFragment());
         commands.add(new UseFragment());
         commands.add(new GoIntoCombat());
+        commands.add(new EmployAdventurer());
+        commands.add(new GoIntoAdventureGame());
     }
 
     public static CommandManager getInstance() {
