@@ -31,7 +31,7 @@ public class MainClass {
             for (int j = 1; j < cmd.size(); j++) {
                 message.add(cmd.get(j));
             }
-            CommandUtil command = manager.selectCommand(type);
+            CommandManager.CommandUtil command = manager.selectCommand(type);
             command.execute(message);
         }
     }

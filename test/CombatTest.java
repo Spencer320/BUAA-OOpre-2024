@@ -12,6 +12,7 @@ public class CombatTest {
     Adventurer rival1 = new Adventurer("10010","r1");
     Adventurer rival2 = new Adventurer("10011","r2");
     List<Adventurer> rivals = new ArrayList<>();
+    ItemStore itemStore = ItemStore.getInstance();
 
     public void setRivals() {
         rivals.add(rival1);
@@ -19,24 +20,24 @@ public class CombatTest {
     }
 
     public void setAdventurer() {
-        adventurer.addBottle("8","anon",100,2000,"AtkBottle");
+        adventurer.addBottle(itemStore.createBottle("8","anon",100,2000,"AtkBottle"));
         adventurer.carryItem("8");
         adventurer.useBottle("8");
-        rival1.addBottle("88","anon",220,2000,"DefBottle");
+        rival1.addBottle(itemStore.createBottle("88","anon",220,2000,"DefBottle"));
         rival1.carryItem("88");
         rival1.useBottle("88");
-        rival2.addBottle("888","anon",180,2000,"DefBottle");
+        rival2.addBottle(itemStore.createBottle("888","anon",180,2000,"DefBottle"));
         rival2.carryItem("888");
         rival2.useBottle("888");
-        rival2.addBottle("8888","anon",0,2000,"HpBottle");
+        rival2.addBottle(itemStore.createBottle("8888","anon",0,2000,"HpBottle"));
         rival2.carryItem("8888");
         rival2.useBottle("8888");
     }
 
     public void setEquipment() {
-        adventurer.addEquipment("7","soyo",2,150,"Axe");
-        adventurer.addEquipment("6","saki",1,100,"Blade");
-        adventurer.addEquipment("5","taki",1,200,"Sword");
+        adventurer.addEquipment(itemStore.createEquipment("7","soyo",2,150,"Axe"));
+        adventurer.addEquipment(itemStore.createEquipment("6","saki",1,100,"Blade"));
+        adventurer.addEquipment(itemStore.createEquipment("5","taki",1,200,"Sword"));
         adventurer.carryItem("7");
         adventurer.carryItem("6");
         adventurer.carryItem("5");
@@ -69,8 +70,10 @@ public class CombatTest {
         assertFalse(combat2.isCombat());
         assertTrue(combat3.isCombat());
         combat3.success();
+        assertEquals(0, equipment3.getDurability());
 
         Equipment equipment4 = adventurer.getCarriedEquipments().get("taki");
+        assertNull(equipment4);
         Combat combat4 = new Combat(adventurer,rivals, equipment4);
         assertFalse(combat4.isCombat());
 

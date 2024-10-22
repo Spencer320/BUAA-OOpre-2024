@@ -1,5 +1,5 @@
 public class Mercenary {
-    private Adventurer adventurer;
+    private final Adventurer adventurer;
     private int assistanceTimes;
 
     public Mercenary(Adventurer adventurer, int assistanceTimes) {

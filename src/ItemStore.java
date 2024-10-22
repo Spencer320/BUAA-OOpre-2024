@@ -1,5 +1,5 @@
 public class ItemStore {
-    private static ItemStore itemStore = new ItemStore();
+    private static final ItemStore itemStore = new ItemStore();
 
     public static ItemStore getInstance() {
         return itemStore;

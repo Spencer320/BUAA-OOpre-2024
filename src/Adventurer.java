@@ -115,6 +115,8 @@ public class Adventurer {
     }
 
     public void deleteBottle(Bottle bottle) {
+        String name = bottle.getName();
+        String id = bottle.getId();
         if (carriedBottles.containsKey(name)) {
             HashMap<String,Bottle> bottles = carriedBottles.get(name);
             if (bottles.containsKey(id)) {
@@ -125,6 +127,8 @@ public class Adventurer {
     }
 
     public void deleteEquipment(Equipment equipment) {
+        String name = equipment.getName();
+        String id = equipment.getId();
         if (carriedEquipments.containsKey(name)) {
             carriedEquipments.remove(name,equipment);
         }

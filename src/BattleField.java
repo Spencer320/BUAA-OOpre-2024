@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class BattleField {
-    private static BattleField battleField = new BattleField();
+    private static final BattleField battleField = new BattleField();
     private Combat combat;
 
     public static BattleField getInstance() {
