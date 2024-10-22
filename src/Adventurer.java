@@ -16,6 +16,8 @@ public class Adventurer {
     //pack
     private final HashMap<String,Equipment> carriedEquipments;
     private final HashMap<String, HashMap<String,Bottle>> carriedBottles;
+    //employ
+    private final ArrayList<Mercenary> mercenaries;
 
     public Adventurer(String id, String name) {
         this.id = id;
@@ -28,6 +30,7 @@ public class Adventurer {
         this.ce = atk + def;
         this.carriedEquipments = new HashMap<>();
         this.carriedBottles = new HashMap<>();
+        mercenaries = new ArrayList<>();
     }
 
     public String getId() {
@@ -66,52 +69,32 @@ public class Adventurer {
         return carriedBottles;
     }
 
+    public ArrayList<Mercenary> getMercenaries() {
+        return mercenaries;
+    }
+
     public void updateCe() {
         this.ce = this.atk + this.def;
+    }
+
+    public void updateAtk(int atk) {
+        this.atk = atk;
+    }
+
+    public void updateDef(int def) {
+        this.def = def;
     }
 
     public void updateHp(int hp) {
         this.hp = hp;
     }
 
-    public void addBottle(String bottleId, String name, int ce, int capacity, String type) {
-        Item bottle = null;
-        switch (type) {
-            case "HpBottle":
-                bottle = new HpBottle(bottleId, name, ce, capacity);
-                break;
-            case "AtkBottle":
-                bottle = new AtkBottle(bottleId, name, ce, capacity);
-                break;
-            case "DefBottle":
-                bottle = new DefBottle(bottleId, name, ce, capacity);
-                break;
-            default:
-        }
-        items.put(bottleId, bottle);
+    public void addBottle(Item bottle) {
+        items.put(bottle.getId(), bottle);
     }
 
-    public void addEquipment(String equipmentId, String name, int durability, int ce,String type) {
-        Item equipment = null;
-        switch (type) {
-            case "Axe":
-                equipment = new Axe(equipmentId,name,ce,durability);
-                break;
-            case "Sword":
-                equipment = new Sword(equipmentId,name,ce,durability);
-                break;
-            case "Blade":
-                equipment = new Blade(equipmentId,name,ce,durability);
-                break;
-            default:
-        }
-        items.put(equipmentId,equipment);
-    }
-
-    public void increaseDurability(String equipmentId) {
-        Equipment equipment = (Equipment) items.get(equipmentId);
-        equipment.increaseDurability();
-        System.out.println(equipment.getName() + " " + equipment.getDurability());
+    public void addEquipment(Item equipment) {
+        items.put(equipment.getId(), equipment);
     }
 
     public void deleteItem(String itemId) {
@@ -120,18 +103,18 @@ public class Adventurer {
             if (item instanceof Bottle) {
                 int capacity = ((Bottle) item).getCapacity();
                 String name = item.getName();
-                deleteBottle((Bottle) item,itemId, name);
+                deleteBottle((Bottle) item);
                 System.out.println(item.getType() + " " + name + " " + capacity);
             } else if (item instanceof Equipment) {
                 int durability = ((Equipment) item).getDurability();
                 String name = item.getName();
-                deleteEquipment((Equipment) item,itemId,name);
+                deleteEquipment((Equipment) item);
                 System.out.println(item.getType() + " " + name + " " + durability);
             }
         }
     }
 
-    public void deleteBottle(Bottle bottle,String id,String name) {
+    public void deleteBottle(Bottle bottle) {
         if (carriedBottles.containsKey(name)) {
             HashMap<String,Bottle> bottles = carriedBottles.get(name);
             if (bottles.containsKey(id)) {
@@ -141,7 +124,7 @@ public class Adventurer {
         items.remove(id);
     }
 
-    public void deleteEquipment(Equipment equipment,String id,String name) {
+    public void deleteEquipment(Equipment equipment) {
         if (carriedEquipments.containsKey(name)) {
             carriedEquipments.remove(name,equipment);
         }
@@ -175,7 +158,7 @@ public class Adventurer {
         if (bottles == null || !bottles.containsKey(bottleId)) {
             System.out.println(this.name + " fail to use " + bottle.getName());
         } else if (bottle.isUsed()) {
-            deleteBottle(bottle,bottleId,bottle.getName());
+            deleteBottle(bottle);
             System.out.println(this.name + " " + this.hp + " " + this.atk + " " + this.def);
         } else {
             if (bottle instanceof HpBottle) {
@@ -226,9 +209,31 @@ public class Adventurer {
                     System.out.println(equipment.getName() + " " + equipment.getDurability());
                 }
             } else {
-                addBottle(welfareId,name,0,100,"HpBottle");
+                ItemStore itemStore = ItemStore.getInstance();
+                addBottle(itemStore.createBottle(welfareId,name,0,100,"HpBottle"));
                 System.out.println("Congratulations! HpBottle " + name + " acquired");
             }
         }
+    }
+
+    public void employAdventurer(Adventurer adventurer) {
+        Mercenary mercenary = new Mercenary(adventurer,0);
+        mercenaries.add(mercenary);
+    }
+
+    public int getComprehensiveCE() {
+        int ce = this.ce;
+        for (HashMap<String, Bottle> bottles : getCarriedBottles().values()) {
+            for (Bottle bottle : bottles.values()) {
+                ce += bottle.getCe();
+            }
+        }
+        for (Equipment equipment : getCarriedEquipments().values()) {
+            ce += equipment.getCe();
+        }
+        for (Mercenary mercenary : getMercenaries()) {
+            ce += mercenary.getAdventurer().getCe();
+        }
+        return ce;
     }
 }

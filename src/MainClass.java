@@ -24,15 +24,15 @@ public class MainClass {
     }
 
     public static void typeCommand(ArrayList<ArrayList<String>> inputInfo) {
-        CommandManager manager = new CommandManager();
+        CommandManager manager = CommandManager.getInstance();
         for (ArrayList<String> cmd : inputInfo) {
             ArrayList<String> message = new ArrayList<>();
             String type = cmd.get(0);
             for (int j = 1; j < cmd.size(); j++) {
                 message.add(cmd.get(j));
             }
-            CommandUtil commandUtil = manager.selectCommand(type);
-            commandUtil.message(message);
+            CommandUtil command = manager.selectCommand(type);
+            command.execute(message);
         }
     }
 }

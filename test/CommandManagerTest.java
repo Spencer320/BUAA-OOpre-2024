@@ -5,8 +5,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class CommandManagerTest {
-    CommandManager manager = new CommandManager();
-
     @Test
     public void testPoint1() {
         String data = "5\n" +

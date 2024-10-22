@@ -1,9 +1,9 @@
 import java.util.List;
 
 public class Combat {
-    private Adventurer adventurer;
-    private List<Adventurer> rivals;
-    private Equipment equipment;
+    private final Adventurer adventurer;
+    private final List<Adventurer> rivals;
+    private final Equipment equipment;
 
     public Combat(Adventurer adventurer, List<Adventurer> rivals, Equipment equipment) {
         this.adventurer = adventurer;
@@ -11,14 +11,30 @@ public class Combat {
         this.equipment = equipment;
     }
 
-    public boolean isCombat() {
+    public List<Adventurer> getRivals() {
+        return rivals;
+    }
+
+    public Adventurer getAdventurer() {
+        return adventurer;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public int getMaxDef() {
         int maxDef = 0;
         for (Adventurer rival : rivals) {
             if (rival.getDef() > maxDef) {
                 maxDef = rival.getDef();
             }
         }
-        return equipment != null && adventurer.getAtk() + equipment.getCe() > maxDef;
+        return maxDef;
+    }
+
+    public boolean isCombat() {
+        return equipment != null && adventurer.getAtk() + equipment.getCe() > getMaxDef();
     }
 
     public void success() {
@@ -28,7 +44,7 @@ public class Combat {
         }
         equipment.decreaseDurability();
         if (equipment.getDurability() == 0) {
-            adventurer.deleteEquipment(equipment, equipment.getId(), equipment.getName());
+            adventurer.deleteEquipment(equipment);
         }
     }
 

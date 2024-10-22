@@ -1,5 +1,5 @@
 public class Bottle extends Item {
-    private int capacity;
+    private final int capacity;
     private boolean isUsed;
 
     public int getCapacity() {

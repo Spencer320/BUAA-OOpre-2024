@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 public class CommandManager {
+    private static CommandManager commandManager;
     private final ArrayList<CommandUtil> commands = new ArrayList<>();
 
-    public CommandManager() {
+    private CommandManager() {
         commands.add(new CreateAdventurer());
         commands.add(new AddBottle());
         commands.add(new AddEquipment());
@@ -14,6 +15,13 @@ public class CommandManager {
         commands.add(new AddFragment());
         commands.add(new UseFragment());
         commands.add(new GoIntoCombat());
+    }
+
+    public static CommandManager getInstance() {
+        if (commandManager == null) {
+            commandManager = new CommandManager();
+        }
+        return commandManager;
     }
 
     public CommandUtil selectCommand(String type) {

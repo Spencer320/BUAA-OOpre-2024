@@ -1,5 +1,5 @@
 public class DefBottle extends Bottle {
-    private int def;
+    private final int def;
 
     public DefBottle(String id, String name, int ce, int capacity) {
         super(id, name, ce, capacity);

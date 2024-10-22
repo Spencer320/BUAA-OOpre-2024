@@ -1,5 +1,5 @@
 public class HpBottle extends Bottle {
-    private int hp;
+    private final int hp;
 
     public HpBottle(String id, String name, int ce, int capacity) {
         super(id, name, ce, capacity);

@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
 public interface CommandUtil {
-    void message(ArrayList message);
+    void execute(ArrayList<String> message);
 }
-
