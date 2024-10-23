@@ -193,12 +193,12 @@ public class CommandManager {
         }
     }
 
-    public static class GoIntoAdventureGame implements CommandUtil {
+    static class GoIntoAdventureGame implements CommandUtil {
         @Override
         public void execute(ArrayList<String> message) {
             String id = message.get(0);
-            String[] newArgs = new String[]{id};
-            AdventureGame.main(newArgs);
+            Adventurer adventurer = MainClass.adventurers.get(id);
+            AdventureGame.dungeon(adventurer);
         }
     }
 }

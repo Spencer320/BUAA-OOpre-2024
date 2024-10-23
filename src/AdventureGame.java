@@ -2,8 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AdventureGame {
-    public static void main(String[] args) {
-        Adventurer adventurer = MainClass.adventurers.get(args[0]);
+    public static void dungeon(Adventurer adventurer) {
         ArrayList<Guard> guards = new ArrayList<>(Arrays.asList(
                 new Shd(),
                 new Flm(),
