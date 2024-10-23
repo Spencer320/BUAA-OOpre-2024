@@ -237,6 +237,7 @@ public class CombatTest {
         assertSame(rival2.getMercenaries().get(0).getAdventurer(), adventurer1);
         combat.success();
         assertTrue(rival2.getMercenaries().isEmpty());
+        assertNotNull(rival2.getMercenaries());
     }
 
     @Test

@@ -53,7 +53,7 @@ public class ChainCombat extends Combat {
             int prevHp = rival.getHp();
             rival.updateHp(equipment.newHp(adventurer.getAtk(), rival.getDef(),rival.getHp()));
             int nowHp = rival.getHp();
-            lossDef += (prevHp - nowHp);
+            lossDef = lossDef + (prevHp - nowHp);
         }
         System.out.println(lossDef);
         equipment.decreaseDurability();

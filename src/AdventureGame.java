@@ -13,8 +13,10 @@ public class AdventureGame {
         for (Guard guard : guards) {
             if (guard.fight(adventurer)) {
                 Treasure treasure = TreasureFactory.createTreasure(guard);
-                treasure.showInfo();
-                treasure.useBy(adventurer);
+                if (treasure != null) {
+                    treasure.showInfo();
+                    treasure.useBy(adventurer);
+                }
             } else {
                 break;
             }
@@ -197,7 +199,7 @@ public class AdventureGame {
                 case "Frz":
                     return new FrzTreasure();
                 default:
-                    throw new IllegalArgumentException("Unknown guard type");
+                    return null;
             }
         }
     }

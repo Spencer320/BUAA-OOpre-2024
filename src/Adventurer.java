@@ -122,6 +122,9 @@ public class Adventurer {
             if (bottles.containsKey(id)) {
                 bottles.remove(id,bottle);
             }
+            if (bottles.isEmpty()) {
+                carriedBottles.remove(name,bottles);
+            }
         }
         items.remove(id);
     }
