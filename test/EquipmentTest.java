@@ -29,7 +29,7 @@ public class EquipmentTest {
 
     @Test
     public void newHp(){
-        assertEquals(50,equipment1.newHp(105,50,500));
+        assertEquals(50,equipment1.newHp(105,50,505));
         assertEquals(345,equipment2.newHp(105,50,500));
         assertEquals(295,equipment3.newHp(105,50,500));
     }

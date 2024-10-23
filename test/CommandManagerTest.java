@@ -143,6 +143,23 @@ public class CommandManagerTest {
                 "11 0 16\n" +
                 "10 0 Sword1 chain 2  1 8\n";
 
+        InputStream in = new ByteArrayInputStream(data.getBytes());
+        System.setIn(in);
+
+        ArrayList<ArrayList<String>> inputInfo = MainClass.getInputInfo();
+        MainClass.typeCommand(inputInfo);
+    }
+    @Test
+    public void testPoint6() {
+        String data = "8\n" +
+                "1 10086 adv1\n" +
+                "2 10086 1 bottle 10 AtkBottle 2999\n" +
+                "12 10086\n" +
+                "3 10086 2 equ 50 Axe 960\n" +
+                "6 10086 1\n" +
+                "6 10086 2\n" +
+                "7 10086 1\n" +
+                "12 10086\n";
 
         InputStream in = new ByteArrayInputStream(data.getBytes());
         System.setIn(in);
