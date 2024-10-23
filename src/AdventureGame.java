@@ -2,14 +2,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AdventureGame {
+    private static ArrayList<Guard> guards = new ArrayList<>(Arrays.asList(
+            new Shd(),
+            new Flm(),
+            new Stn(),
+            new Wnd(),
+            new Frz()
+    ));
+
     public static void dungeon(Adventurer adventurer) {
-        ArrayList<Guard> guards = new ArrayList<>(Arrays.asList(
-                new Shd(),
-                new Flm(),
-                new Stn(),
-                new Wnd(),
-                new Frz()
-        ));
         for (Guard guard : guards) {
             if (guard.fight(adventurer)) {
                 Treasure treasure = TreasureFactory.createTreasure(guard);
