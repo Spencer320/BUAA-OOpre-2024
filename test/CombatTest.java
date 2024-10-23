@@ -50,8 +50,6 @@ public class CombatTest {
         adventurer2.updateHp(100);
         adventurer1.addEquipment(itemStore.createEquipment("600","Taki",1,100,"Blade"));
         adventurer2.addEquipment(itemStore.createEquipment("500","Anon",1,200,"Sword"));
-        adventurer1.carryItem("600");
-        adventurer2.carryItem("500");
     }
 
     public void setEquipment() {
@@ -186,6 +184,8 @@ public class CombatTest {
         setAdventurer();
         setEquipment();
         setMercenary();
+        adventurer1.carryItem("600");
+        adventurer2.carryItem("500");
         rival1.employAdventurer(adventurer1);
         rival2.employAdventurer(adventurer1);
         rival2.employAdventurer(adventurer2);
@@ -204,6 +204,8 @@ public class CombatTest {
         setAdventurer();
         setEquipment();
         setMercenary();
+        adventurer1.carryItem("600");
+        adventurer2.carryItem("500");
         rival1.employAdventurer(adventurer1);
         rival2.employAdventurer(adventurer1);
         rival2.employAdventurer(adventurer2);
@@ -217,5 +219,23 @@ public class CombatTest {
         assertSame(rival2.getMercenaries().get(0).getAdventurer(), adventurer1);
         combat.success();
         assertTrue(rival2.getMercenaries().isEmpty());
+    }
+
+    @Test
+    public void normalTest3(){
+        setRivals();
+        setAdventurer();
+        setEquipment();
+        setMercenary();
+        rival1.employAdventurer(adventurer1);
+        rival2.employAdventurer(adventurer1);
+        rival2.employAdventurer(adventurer2);
+        Equipment equipment = adventurer.getCarriedEquipments().get("soyo");
+        NormalCombat combat = new NormalCombat(adventurer,rivals,equipment);
+        assertTrue(combat.isCombat());
+        combat.success();
+        assertFalse(rival2.getItems().containsKey("500"));
+        assertTrue(adventurer1.getItems().containsKey("600"));
+        assertFalse(rival2.getItems().containsKey("600"));
     }
 }

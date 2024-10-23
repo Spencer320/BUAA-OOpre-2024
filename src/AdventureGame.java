@@ -18,8 +18,6 @@ public class AdventureGame {
                 treasure.useBy(adventurer);
             }
         }
-
-
     }
 
     interface Guard {
@@ -103,8 +101,11 @@ public class AdventureGame {
         @Override
         public void useBy(Adventurer adventurer) {
             adventurer.updateDef(adventurer.getDef() + 40);
+            adventurer.updateCe();
             for (Mercenary mercenary : adventurer.getMercenaries()) {
-                mercenary.getAdventurer().updateDef(mercenary.getAdventurer().getDef() + 40);
+                Adventurer mercenaryAdventurer = mercenary.getAdventurer();
+                mercenaryAdventurer.updateDef(mercenaryAdventurer.getDef() + 40);
+                mercenaryAdventurer.updateCe();
             }
         }
     }
@@ -118,8 +119,11 @@ public class AdventureGame {
         @Override
         public void useBy(Adventurer adventurer) {
             adventurer.updateAtk(adventurer.getAtk() + 40);
+            adventurer.updateCe();
             for (Mercenary mercenary : adventurer.getMercenaries()) {
-                mercenary.getAdventurer().updateAtk(mercenary.getAdventurer().getAtk() + 40);
+                Adventurer mercenaryAdventurer = mercenary.getAdventurer();
+                mercenaryAdventurer.updateAtk(mercenaryAdventurer.getAtk() + 40);
+                mercenaryAdventurer.updateCe();
             }
         }
     }
@@ -133,8 +137,11 @@ public class AdventureGame {
         @Override
         public void useBy(Adventurer adventurer) {
             adventurer.updateDef(adventurer.getDef() + 40);
+            adventurer.updateCe();
             for (Mercenary mercenary : adventurer.getMercenaries()) {
-                mercenary.getAdventurer().updateDef(mercenary.getAdventurer().getDef() + 40);
+                Adventurer mercenaryAdventurer = mercenary.getAdventurer();
+                mercenaryAdventurer.updateDef(mercenaryAdventurer.getDef() + 40);
+                mercenaryAdventurer.updateCe();
             }
         }
     }
@@ -147,9 +154,12 @@ public class AdventureGame {
 
         @Override
         public void useBy(Adventurer adventurer) {
-            adventurer.updateAtk(adventurer.getAtk() + 50);
+            adventurer.updateDef(adventurer.getDef() + 30);
+            adventurer.updateCe();
             for (Mercenary mercenary : adventurer.getMercenaries()) {
-                mercenary.getAdventurer().updateAtk(mercenary.getAdventurer().getAtk() + 50);
+                Adventurer mercenaryAdventurer = mercenary.getAdventurer();
+                mercenaryAdventurer.updateDef(mercenaryAdventurer.getDef() + 30);
+                mercenaryAdventurer.updateCe();
             }
         }
     }
@@ -162,9 +172,12 @@ public class AdventureGame {
 
         @Override
         public void useBy(Adventurer adventurer) {
-            adventurer.updateDef(adventurer.getDef() + 30);
+            adventurer.updateAtk(adventurer.getAtk() + 50);
+            adventurer.updateCe();
             for (Mercenary mercenary : adventurer.getMercenaries()) {
-                mercenary.getAdventurer().updateDef(mercenary.getAdventurer().getDef() + 30);
+                Adventurer mercenaryAdventurer = mercenary.getAdventurer();
+                mercenaryAdventurer.updateAtk(mercenaryAdventurer.getAtk() + 50);
+                mercenaryAdventurer.updateCe();
             }
         }
     }

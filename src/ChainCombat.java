@@ -24,9 +24,9 @@ public class ChainCombat extends Combat {
                 desList.add(adventurer);
             }
             for (Mercenary mercenary : adventurer.getMercenaries()) {
-                Adventurer mercenaryAdventurer = mercenary.getAdventurer();
-                if (! desList.contains(mercenaryAdventurer)) {
-                    desList.add(mercenaryAdventurer);
+                Adventurer merAdventurer = mercenary.getAdventurer();
+                if (! desList.contains(merAdventurer)) {
+                    desList.add(merAdventurer);
                 }
             }
         }
