@@ -176,9 +176,25 @@ public class CommandManager {
                 Adventurer rival = MainClass.adventurers.get(rivalId);
                 rivals.add(rival);
             }
-            BattleField battleField = BattleField.getInstance();
-            battleField.createCombat(adventurer, rivals, equipment, type);
-            battleField.battle();
+            Combat combat = null;
+            switch (type) {
+                case "normal":
+                    combat = new NormalCombat(adventurer,rivals,equipment);
+                    break;
+                case "chain":
+                    combat = new ChainCombat(adventurer,rivals,equipment);
+                    break;
+                default:
+            }
+            if (combat != null) {
+                boolean isCombat = combat.isCombat();
+                if (isCombat) {
+                    combat.success();
+                } else {
+                    combat.failure();
+                }
+            }
+
         }
     }
 
