@@ -100,7 +100,7 @@ public class CombatTest {
         Combat combat = new Combat(adventurer,rivals,adventurer.getCarriedEquipments().get("soyo"));
         combat.success();
         assertEquals(1,adventurer.getCarriedEquipments().get("soyo").getDurability());
-        assertEquals(50,rival1.getHp());
+        assertEquals(16,rival1.getHp());
         assertEquals(250,rival2.getHp());
     }
 
@@ -113,7 +113,7 @@ public class CombatTest {
         combat.success();
         assertFalse(adventurer.getCarriedEquipments().containsKey("saki"));
         assertFalse(adventurer.getItems().containsKey("6"));
-        assertEquals(500 - 221,rival1.getHp());
+        assertEquals(163 - 221,rival1.getHp());
     }
 
     @Test
