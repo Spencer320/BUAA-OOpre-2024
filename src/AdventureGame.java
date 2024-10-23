@@ -151,7 +151,7 @@ public class AdventureGame {
     static class WndTreasure implements Treasure {
         @Override
         public void showInfo() {
-            System.out.println("Frostbite Staff");
+            System.out.println("Windrunner Boots");
         }
 
         @Override
@@ -169,7 +169,7 @@ public class AdventureGame {
     static class FrzTreasure implements Treasure {
         @Override
         public void showInfo() {
-            System.out.println("Windrunner Boots");
+            System.out.println("Frostbite Staff");
         }
 
         @Override

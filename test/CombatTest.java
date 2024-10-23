@@ -144,10 +144,13 @@ public class CombatTest {
         setMercenary();
         rival1.employAdventurer(adventurer1);
         rival1.employAdventurer(adventurer2);
-        Equipment equipment = adventurer.getCarriedEquipments().get("soyo");
-        ChainCombat combat = new ChainCombat(adventurer,rivals, equipment);
-        System.out.println(combat.getMaxDef());
-        assertFalse(combat.isCombat());
+        Equipment equipment1 = adventurer.getCarriedEquipments().get("soyo");
+        Equipment equipment2 = adventurer.getCarriedEquipments().get("taki");
+        ChainCombat combat1 = new ChainCombat(adventurer,rivals, equipment1);
+        ChainCombat combat2 = new ChainCombat(adventurer,rivals, equipment2);
+        System.out.println(combat1.getMaxDef());
+        assertFalse(combat1.isCombat());
+        assertTrue(combat2.isCombat());
     }
 
     @Test
@@ -170,12 +173,25 @@ public class CombatTest {
         adventurer8.employAdventurer(adventurer9);
         adventurer8.employAdventurer(adventurer10);
         adventurer10.employAdventurer(adventurer1);
+        adventurer10.employAdventurer(adventurer);
         ChainCombat combat = new ChainCombat(adventurer,rivals,equipment);
         assertTrue(combat.isCombat());
         List<Adventurer> extendedRivals = combat.getExtendedRivals();
         assertTrue(extendedRivals.contains(adventurer5));
         assertFalse(extendedRivals.contains(adventurer6));
         assertTrue(extendedRivals.contains(adventurer10));
+        int prevAllHp = 0;
+        for (Adventurer extendedRival : extendedRivals) {
+            prevAllHp += extendedRival.getHp();
+        }
+        combat.success();
+        int nowAllHp = 0;
+        for (Adventurer extendedRival : extendedRivals) {
+            nowAllHp += extendedRival.getHp();
+        }
+        assertEquals(2791,prevAllHp-nowAllHp);
+        assertEquals(500-321,adventurer10.getHp());
+        assertEquals(500-321,adventurer.getHp());
     }
 
     @Test

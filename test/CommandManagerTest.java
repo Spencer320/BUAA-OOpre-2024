@@ -153,11 +153,11 @@ public class CommandManagerTest {
     public void testPoint6() {
         String data = "8\n" +
                 "1 10086 adv1\n" +
-                "2 10086 1 bottle 10 AtkBottle 2999\n" +
-                "12 10086\n" +
+                "2 10086 1 bottle 10 AtkBottle 1999\n" +
                 "3 10086 2 equ 50 Axe 960\n" +
                 "6 10086 1\n" +
                 "6 10086 2\n" +
+                "12 10086\n" +
                 "7 10086 1\n" +
                 "12 10086\n";
 
