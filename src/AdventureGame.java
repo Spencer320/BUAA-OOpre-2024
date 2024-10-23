@@ -16,6 +16,8 @@ public class AdventureGame {
                 Treasure treasure = TreasureFactory.createTreasure(guard);
                 treasure.showInfo();
                 treasure.useBy(adventurer);
+            } else {
+                break;
             }
         }
     }
