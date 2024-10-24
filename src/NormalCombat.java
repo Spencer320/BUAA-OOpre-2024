@@ -26,7 +26,6 @@ public class NormalCombat extends Combat {
                             new ArrayList<>(merAdventurer.getCarriedEquipments().values());
                     for (Equipment equipment : equipmentToTransfer) {
                         assistance(merAdventurer, rival, equipment);
-                        merAdventurer.deleteEquipment(equipment);
                     }
                     int maxAssistanceTimes = 3;
                     if (mercenary.getAssistanceTimes() > maxAssistanceTimes) {

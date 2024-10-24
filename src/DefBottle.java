@@ -7,7 +7,9 @@ public class DefBottle extends Bottle {
     }
 
     @Override
-    public int getCe() {
+    public int useBottle() {
+        super.useBottle();
         return def;
     }
+
 }
