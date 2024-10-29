@@ -1,5 +1,5 @@
 public class Var implements Factor {
-    public final String name;
+    private final String name;
 
     public Var(String name) {
         this.name = name;

@@ -1,5 +1,5 @@
 public class Num implements Factor {
-    public final int value;
+    private final int value;
 
     public Num(int value) {
         this.value = value;

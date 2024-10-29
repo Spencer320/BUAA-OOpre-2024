@@ -17,8 +17,9 @@ public class Lexer {
                 tokens.add(new Token(Token.Type.ADD, "+"));
                 pos++;
             } else if (input.charAt(pos) == '*') {
-                /*TODO(2/8)*/
-            } else if (/*TODO(3/8)*/) {
+                tokens.add(new Token(Token.Type.MUL, "*"));
+                pos++;
+            } else if (input.charAt(pos) == 'x') {
                 tokens.add(new Token(Token.Type.VAR, "x"));
                 pos++;
             } else {

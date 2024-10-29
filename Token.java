@@ -2,6 +2,7 @@ public class Token {
     public enum Type {
         ADD, MUL, LPAREN, RPAREN, NUM, VAR
     }
+
     private final Type type;
     private final String content;
 
